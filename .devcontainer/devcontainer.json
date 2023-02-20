@@ -1,0 +1,61 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/docker-existing-dockerfile
+{
+	"name": "Existing Dockerfile",
+	"dockerComposeFile": "../docker-compose.yml",
+	"service": "web",
+	"workspaceFolder": "/app",
+	"features": {
+		"ghcr.io/devcontainers-contrib/features/pylint:2": {},
+		"ghcr.io/dhoeric/features/act:1": {},
+		"ghcr.io/devcontainers/features/python:1": {}
+	},
+	"shutdownAction": "stopCompose",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.python",
+				"batisteo.vscode-django",
+				"adrianwilczynski.alpine-js-intellisense",
+				"bradlc.vscode-tailwindcss",
+				"mtxr.sqltools",
+				"mtxr.sqltools-driver-pg",
+				"editorconfig.editorconfig"
+			],
+			"settings": {
+				"sqltools.connections": [
+					{
+						"name": "Query DB",
+						"driver": "PostgreSQL",
+						"previewLimit": 50,
+						"server": "db",
+						"port": 5432,
+						"database": "qjumper_dev",
+						"username": "postgres",
+						"password": "Phoenix1234"
+					}
+				],
+				"editor.formatOnSave": true
+			}
+		}
+	},
+	"postCreateCommand": "pip install -r requirements.txt",
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [
+		8080,
+		5432
+	],
+
+	// Uncomment the next line to run commands after the container is created.
+	// "postCreateCommand": "cat /etc/os-release",
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.
+	"remoteUser": "appuser"
+}
